@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreenSquare : MonoBehaviour
+public class GreenSquare : Player
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private readonly string pColor = "GREEN";
 
-    // Update is called once per frame
-    void Update()
+    public override void Special()
     {
-        
+
     }
 }

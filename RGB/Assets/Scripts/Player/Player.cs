@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public abstract class Player : MonoBehaviour
+{    
+    public string PlayerColor { get; protected set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void Special();
+
 }

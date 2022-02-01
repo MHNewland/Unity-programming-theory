@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class RedTriangle : Player
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private readonly string pColor = "RED";
 
-    // Update is called once per frame
-    void Update()
+    public override void Special()
     {
-        
+
     }
 }
