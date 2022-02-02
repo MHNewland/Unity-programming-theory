@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueCircle : MonoBehaviour
+public class BlueCircle : Player
 {
-    // Start is called before the first frame update
+    private GameObject PlayerContainer;
+    private int jumpForce = 100;
+
     void Start()
     {
-        
+        pColor = "BLUE";
+        PlayerContainer = GameObject.FindGameObjectWithTag("PlayerContainer");
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Special()
     {
-        
+        //Jump
+        PlayerContainer.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 }

@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public abstract class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public string pColor;
+    public string PlayerColor { get; protected set; }
+
+    public abstract void Special();
+
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        Debug.Log("Player collision");
     }
 
-    // Update is called once per frame
-    void Update()
+    public string getPColor()
     {
-        
+        return pColor;
     }
 }

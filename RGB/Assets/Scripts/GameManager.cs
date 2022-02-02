@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager Instance { get; private set; }
+    public bool gameStarted;
+    private int gravityMultiplyer = 2;
+
+    public void Awake()
     {
-        
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        Physics.gravity = Physics.gravity * gravityMultiplyer;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

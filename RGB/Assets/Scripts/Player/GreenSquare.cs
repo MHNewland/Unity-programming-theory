@@ -2,17 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreenSquare : MonoBehaviour
+public class GreenSquare : Player
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private bool shieldEnabled = false;
+    private float shieldDuration = 1.0f;
+    private float shieldUpTime = 0;
     void Start()
     {
-        
+        pColor = "GREEN";
+    }
+    public override void Special()
+    {
+        //Shield
+        shieldEnabled = true;
+        shieldUpTime = 0;
     }
 
-    // Update is called once per frame
+    IEnumerator enableShield()
+    {
+        shieldEnabled = true;
+        yield return new WaitForSeconds(shieldDuration);
+    }
+
     void Update()
     {
-        
+        if (shieldEnabled)
+        {
+            shieldUpTime += Time.deltaTime;
+            if(shieldUpTime >= shieldDuration)
+            {
+                shieldEnabled = false;
+                shieldUpTime = 0;
+            }
+        }
     }
 }
