@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class RedTriangle : Player
 {
-    [SerializeField]
-    private readonly string pColor = "RED";
+    void Start()
+    {
+        pColor = "RED";
+    }
 
     public override void Special()
     {
-
+        //laser
     }
+
 }

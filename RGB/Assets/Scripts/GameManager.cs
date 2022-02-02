@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameManager Instance { get; private set; }
+    public static GameManager Instance { get; private set; }
+    public bool gameStarted;
+    private int gravityMultiplyer = 2;
 
     public void Awake()
     {
@@ -16,7 +18,7 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
+        Physics.gravity = Physics.gravity * gravityMultiplyer;
     }
 
 }

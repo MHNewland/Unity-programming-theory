@@ -6,11 +6,9 @@ using UnityEngine.Profiling;
 public class PlayerController : MonoBehaviour
 {
 
-    public Player Player;
+    public GameObject Player;
     public GameObject[] PlayerGO;
 
-    [SerializeField]
-    private bool GameStarted = true;
     [SerializeField]
     private int currentPlayer;
     private int playerLastFrame;
@@ -19,7 +17,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         PlayerGO = GameObject.FindGameObjectsWithTag("Player");
-        Player = PlayerGO[0].GetComponent<Player>();
+        Player = PlayerGO[0];
         currentPlayer = 0;
         UpdatePlayer();
     }
@@ -27,37 +25,42 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Update player if player has changed
-        //Profiler.BeginSample("Change current player");
-        //if (currentPlayer != Player.PlayerColor)
-        //{
-        //    currentPlayer = Player.PlayerColor;
-        //}
-        //Profiler.EndSample();
+        //wait for player to press a button to start the game
+        if (!GameManager.Instance.gameStarted)
+        {
+            if (Input.anyKeyDown)
+            {
+                GameManager.Instance.gameStarted = true;
+            }
+        }
 
         //Switch between players and use special
+        // Q = Red
+        // W = Green
+        // E = Blue
+        // R or Space = Special
         Profiler.BeginSample("Input");
-        if (GameStarted)
+        if (GameManager.Instance.gameStarted)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 currentPlayer = 0;
-                Debug.Log("Q pressed");
+                //Debug.Log("Q pressed");
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
                 currentPlayer = 1;
-                Debug.Log("W pressed");
+                //Debug.Log("W pressed");
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
                 currentPlayer = 2;
-                Debug.Log("E pressed");
+                //Debug.Log("E pressed");
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("Space pressed");
-                Player.Special();
+                //Debug.Log("Space pressed");
+                PlayerGO[currentPlayer].GetComponent<Player>().Special();
             }
 
             if (playerLastFrame != currentPlayer)
@@ -76,7 +79,9 @@ public class PlayerController : MonoBehaviour
             go.SetActive(false);
         }
         PlayerGO[currentPlayer].SetActive(true);
-        Player = PlayerGO[currentPlayer].GetComponent<Player>();
+        Player = PlayerGO[currentPlayer];
         playerLastFrame = currentPlayer;
     }
+
+
 }
