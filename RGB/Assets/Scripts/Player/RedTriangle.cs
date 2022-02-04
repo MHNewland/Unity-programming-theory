@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RedTriangle : Player
 {
+    public GameObject laser;
+
     void Start()
     {
         pColor = "RED";
@@ -12,6 +14,7 @@ public class RedTriangle : Player
     public override void Special()
     {
         //laser
+        Instantiate(laser, transform.position, laser.transform.rotation);
     }
 
 }
