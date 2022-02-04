@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Gate : Obstacle
 {
-    private GameObject PlayerContainer;
     public string gateColor;
     private string playerColor;
     private GameObject[] Gates;
 
-    private void Start()
-    {
-        PlayerContainer = GameObject.FindGameObjectWithTag("PlayerContainer");
-    }
 
     void OnTriggerEnter(Collider collider)
     {

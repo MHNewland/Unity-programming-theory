@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Gate
   - PlayerContainer
+  - TNT
   layers:
   - Default
   - TransparentFX

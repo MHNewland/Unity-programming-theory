@@ -9,6 +9,7 @@ public class ObstacleController : MonoBehaviour
     [SerializeField]
     private bool spawning = false;
     public GameObject[] Gates;
+    public GameObject[] Obstacles;
 
     // Start is called before the first frame update
     void Start()
@@ -22,18 +23,18 @@ public class ObstacleController : MonoBehaviour
         if (!spawning && GameManager.Instance.gameStarted)
         {
             //Debug.Log("update, start spawning");
-            InvokeRepeating("SpawnObstacles", 0, SpawnDelay);
+            InvokeRepeating("StartSpawning", 0, SpawnDelay);
         }
 
         if (!GameManager.Instance.gameStarted && spawning)
         {
             //Debug.Log("Stop Spawning");
-            CancelInvoke("SpawnObstacles");
+            CancelInvoke("StartSpawning");
             spawning = false;
         }  
     }
 
-    private void SpawnObstacles()
+    private void StartSpawning()
     {
         spawning = true;
         SpawnObstacleOrGate();
@@ -44,23 +45,25 @@ public class ObstacleController : MonoBehaviour
         int i = Random.Range(0, 10);
         if (i <= 7)
         {
-            //Debug.Log("Spawn gate");
             SpawnGate();
         }
         else
         {
-            //Debug.Log("Spawn obstacle");
-
-            //SpawnObstacle();
+            SpawnObstacle();
         }
     }
 
     private void SpawnGate()
     {
-        int gateInt = Random.Range(0,3);
+        int gateInt = Random.Range(0,Gates.Length);
         if (gateInt == 3) gateInt--;
-        Instantiate(Gates[gateInt], transform.position, Gates[gateInt].transform.rotation);
+        Instantiate(Gates[gateInt], Gates[gateInt].transform.position, Gates[gateInt].transform.rotation);
     }
 
-
+    private void SpawnObstacle()
+    {
+        int obstacleInt = Random.Range(0, Obstacles.Length);
+        if (obstacleInt == 3) obstacleInt--;
+        Instantiate(Obstacles[obstacleInt], Obstacles[obstacleInt].transform.position, Obstacles[obstacleInt].transform.rotation);
+    }
 }

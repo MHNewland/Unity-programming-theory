@@ -82,6 +82,4 @@ public class PlayerController : MonoBehaviour
         Player = PlayerGO[currentPlayer];
         playerLastFrame = currentPlayer;
     }
-
-
 }
