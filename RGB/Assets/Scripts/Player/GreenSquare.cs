@@ -5,7 +5,7 @@ using UnityEngine;
 public class GreenSquare : Player
 {
     
-    public bool shieldEnabled { get; set; }
+    public bool shieldEnabled { get; private set; }
     private float shieldDuration = 1.0f;
     private float shieldFadeTime = 0.75f;
     private float shieldUpTime = 0;
@@ -14,6 +14,11 @@ public class GreenSquare : Player
     private float baseAlpha;
     [SerializeField]
     private float currentAlpha;
+
+    private void OnEnable()
+    {
+        shieldEnabled = false;
+    }
 
     void Start()
     {

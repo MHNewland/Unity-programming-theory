@@ -74,10 +74,6 @@ public class PlayerController : MonoBehaviour
 
     public void UpdatePlayer()
     {
-        //disable the shield when switching players so it's not still enabled when they switch back
-        if(PlayerGO[1].TryGetComponent(out GreenSquare gs)){
-            gs.shieldEnabled = false;
-        }
         foreach(GameObject go in PlayerGO)
         {
             go.SetActive(false);
